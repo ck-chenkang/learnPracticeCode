@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ref和reactive</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h3>{{number}}</h3>
+      <h3>{{person.name}} + {{person.age}}</h3>
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, ref, reactive } = Vue;
+
+    createApp({
+      setup() {
+        const number = ref(10);
+        number.value = 20;
+
+        const person = reactive({
+          name: 'ck',
+          age: 29,
+        });
+
+        person.age = 30;
+
+        return {
+          number,
+          person,
+        };
+      },
+    }).mount('#app');
+  </script>
+</html>

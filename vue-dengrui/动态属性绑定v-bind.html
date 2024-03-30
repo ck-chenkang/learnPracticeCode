@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标题</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      .blue {
+        color: blue;
+      }
+
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p :class="color.color">{{msg}}</p>
+      <hr />
+      <button type="button" @click="changeColor">改变颜色的魔法</button>
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, reactive } = Vue;
+    createApp({
+      setup() {
+        const color = reactive({
+          color: 'blue',
+        });
+
+        function changeColor() {
+          color.color = 'red';
+        }
+
+        return {
+          msg: '猜猜我是什么颜色',
+          color,
+          changeColor,
+        };
+      },
+    }).mount('#app');
+  </script>
+</html>

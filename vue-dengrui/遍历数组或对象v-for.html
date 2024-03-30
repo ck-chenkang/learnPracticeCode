@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标题</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(value, index) in data.numberArr" :key="index">
+          index: {{index}} | value {{value}}
+        </li>
+      </ul>
+
+      <hr />
+      <ol>
+        <li v-for="(item, index) in data.userObj" :key="index">
+          key: {{index}} | value: {{item}}
+        </li>
+      </ol>
+      <hr />
+      <ol>
+        <li v-for="(item, index) in data.objArr" :key="index">
+          index:{{index}}: value.id {{item.id}}|value.name {{item.name}}
+        </li>
+      </ol>
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, reactive } = Vue;
+    createApp({
+      setup() {
+        const data = reactive({
+          numberArr: ['yi', 'er', 3, 4, 5],
+          userObj: {
+            name: 'cc',
+            age: 29,
+          },
+          objArr: [
+            { id: '1', name: 'kk' },
+            { id: '2', name: 'mm' },
+          ],
+        });
+        return { data };
+      },
+    }).mount('#app');
+  </script>
+</html>

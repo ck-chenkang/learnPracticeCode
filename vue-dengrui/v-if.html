@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{number}}
+      <br />
+      <p v-if="number <= 100">不超过100</p>
+      <p v-else-if="number > 100 && number < 1000">超过100了</p>
+      <p v-else>很大</p>
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, ref, reactive } = Vue;
+    createApp({
+      setup() {
+        const number = ref(1000);
+
+        return {
+          number,
+        };
+      },
+    }).mount('#app');
+  </script>
+</html>

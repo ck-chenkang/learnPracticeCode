@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{ data.show}} <br />
+      <button type="button" @click="toggle">toggle</button>
+
+      <p v-show="data.show">这个属性有个v-show</p>
+      <br />
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, reactive } = Vue;
+
+    createApp({
+      setup() {
+        const data = reactive({
+          show: false,
+        });
+
+        const toggle = () => {
+          console.log(data.show);
+          data.show = !data.show;
+        };
+
+        return {
+          data,
+          toggle,
+        };
+      },
+    }).mount('#app');
+  </script>
+</html>
