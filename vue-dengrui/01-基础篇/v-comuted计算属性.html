@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标题</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{data.z}}</p>
+      <br />
+      <input type="button" @click="add()" value="add按钮" />
+      <br />
+      <input type="text" value="这样是不是应该有点东西" />
+      <br />
+      <p>{{sum}}</p>
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, reactive, computed } = Vue;
+    createApp({
+      setup() {
+        const data = reactive({
+          x: 1,
+          y: 2,
+          z: 3,
+        });
+
+        const add = () => {
+          console.log('这里是add里面的');
+          data.x++;
+          data.z = data.x + data.y;
+          return data.z;
+        };
+
+        const sum = computed(() => {
+          console.log('这里是computed里面的');
+          data.z = data.x + data.y;
+          return data.z;
+        });
+
+        return {
+          data,
+          sum,
+          add,
+        };
+      },
+    }).mount('#app');
+  </script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标题</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h3>{{data.name}}</h3>
+      <h3>{{data.number}}</h3>
+      <hr />
+      <input type="text" v-model.number="data.number" />
+      <input type="text" v-model.trim="data.name" />
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, reactive } = Vue;
+    createApp({
+      setup() {
+        const data = reactive({
+          name: '桌子',
+          number: 200,
+        });
+        return { data };
+      },
+    }).mount('#app');
+  </script>
+</html>

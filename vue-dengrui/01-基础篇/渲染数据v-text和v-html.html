@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标题</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h3 v-text="data.number"></h3>
+      <a v-html="data.url"></a>
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, reactive } = Vue;
+    createApp({
+      setup() {
+        const data = reactive({
+          number: '这是一段text',
+          url: `<a style="color: blue">www.baidu.com</a>`,
+        });
+        return {
+          data,
+        };
+      },
+    }).mount('#app');
+  </script>
+</html>
