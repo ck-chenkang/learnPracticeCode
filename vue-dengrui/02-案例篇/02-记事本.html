@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标题</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h3>记事本</h3>
+      请输入要新增的行的内容：<input type="text" :value="data.content" />
+      <br />
+      <button @click="addContent">点击增加</button>
+      <hr />
+      <h5>这里是显示区域</h5>
+      <ul v-for="(item, index) in data.list" :key="index">
+        <li>{{item}}</li>
+      </ul>
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, reactive } = Vue;
+    createApp({
+      setup() {
+        let data = reactive({
+          content: '先试试初始化行不行吧',
+          list: [],
+        });
+
+        function addContent() {
+          if (data.content == '') {
+            return;
+          } else {
+            data.list.push(data.content);
+          }
+        }
+        return { data, addContent };
+      },
+    }).mount('#app');
+  </script>
+</html>

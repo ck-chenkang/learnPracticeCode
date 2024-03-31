@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标题</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <select v-model="hobby">
+        <option value="">请选择</option>
+        <option value="1">写作</option>
+        <option value="2">画画</option>
+        <option value="3">运动</option>
+      </select>
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, reactive, ref, watchEffect, watch } = Vue;
+    createApp({
+      setup() {
+        const hobby = ref('');
+
+        watchEffect(() => {
+          console.log('监听开始');
+          // 这里一定要有这个玩意，hobby.value，没有的话，根本不会运行
+          if (hobby.value == '2') {
+            console.log('画画');
+          }
+        });
+
+        return {
+          hobby,
+        };
+      },
+    }).mount('#app');
+  </script>
+</html>

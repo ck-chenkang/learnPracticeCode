@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标题</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{index}}
+      <hr />
+      <img :src=`../assets/01-轮播图片/${index}.jpg` style="height: 400px;
+      width: 600px" />
+      <br />
+      <button type="button" @click="upImg()">上一张</button>
+
+      <button type="button" @click="nexImg()">下一张</button>
+    </div>
+  </body>
+  <script type="module">
+    const { createApp, reactive, ref } = Vue;
+    createApp({
+      setup() {
+        let index = ref(1);
+        function upImg() {
+          if (index.value > 1) {
+            index.value--;
+          } else {
+            index.value = 1;
+          }
+        }
+
+        function nexImg() {
+          console.log(index.value);
+          if (index.value < 3) {
+            index.value++;
+          } else {
+            index.value = 3;
+          }
+        }
+        return {
+          index,
+          upImg,
+          nexImg,
+        };
+      },
+    }).mount('#app');
+  </script>
+</html>
